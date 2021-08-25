@@ -1,8 +1,6 @@
 package org.bedu.clase1
 
-import android.animation.Animator
-import android.animation.AnimatorInflater
-import android.animation.ValueAnimator
+import android.animation.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -117,6 +115,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pivot() {
-        TODO("Not yet implemented")
+        val initPivotX = PropertyValuesHolder.ofFloat("pivotX", 0f)
+        val initPivotY = PropertyValuesHolder.ofFloat("pivotY", 0f)
+        val transparent = PropertyValuesHolder.ofFloat("alpha", 0.6f)
+        val animation1 = ObjectAnimator.ofPropertyValuesHolder(binding.arwing, initPivotX, initPivotY, transparent)
+        animation1.duration = 500
+
+        val pivotCenterX = binding.arwing.width.toFloat() / 2f
+        val pivotCenterY = binding.arwing.height.toFloat() / 2f
+        val centerPivotX = PropertyValuesHolder.ofFloat("pivotX", pivotCenterX)
+        val centerPivotY = PropertyValuesHolder.ofFloat("pivotY", pivotCenterY)
+        val opacy = PropertyValuesHolder.ofFloat("alpha", 1f)
+        val animation2 = ObjectAnimator.ofPropertyValuesHolder(binding.arwing, centerPivotX, centerPivotY, opacy).apply {
+                duration = 500
+                startDelay = 4000
+            }
+
+
+        AnimatorSet().apply {
+            playSequentially(animation1, animation2)
+            start()
+        }
+
     }
 }
