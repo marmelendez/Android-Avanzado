@@ -1,5 +1,6 @@
 package org.bedu.clase1
 
+import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.CycleInterpolator
+import android.widget.Toast
 //import android.view.animation.LinearInterpolator
 import org.bedu.clase1.databinding.ActivityMainBinding
 
@@ -68,6 +70,24 @@ class MainActivity : AppCompatActivity() {
     private fun blink() {
         AnimatorInflater.loadAnimator(this, R.animator.blinking).apply {
             setTarget(binding.arwing)
+
+            addListener(object : Animator.AnimatorListener{
+                override fun onAnimationStart(p0: Animator?) {
+                    Toast.makeText(applicationContext, "Iniciando blinking", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    Toast.makeText(applicationContext, "Terminando blinking", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                    Toast.makeText(applicationContext, "Cancelando blinking", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                    Toast.makeText(applicationContext, "Repitiendo blinking", Toast.LENGTH_SHORT).show()
+                }
+            })
             start()
         }
     }
