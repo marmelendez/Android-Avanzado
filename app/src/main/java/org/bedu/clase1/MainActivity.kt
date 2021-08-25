@@ -30,7 +30,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnSin.setOnClickListener {
             esquivar()
         }
+
+        binding.btnAlpha.setOnClickListener {
+            blink()
+        }
     }
+
+
 
     private fun barrelRoll() {
         val valueAnimator = ValueAnimator.ofFloat(0F,720F) //360 * 2
@@ -54,6 +60,13 @@ class MainActivity : AppCompatActivity() {
         //Inflar un xml = crear las respectivas clases de un animator, mapeo de xml a clases
         //En este caso vamos a crear nuestro objeto de ObjectAnimator
         AnimatorInflater.loadAnimator(this, R.animator.esquivar).apply {
+            setTarget(binding.arwing)
+            start()
+        }
+    }
+
+    private fun blink() {
+        AnimatorInflater.loadAnimator(this, R.animator.blinking).apply {
             setTarget(binding.arwing)
             start()
         }
