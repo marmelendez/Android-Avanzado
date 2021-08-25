@@ -2,14 +2,11 @@ package org.bedu.clase1
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.CycleInterpolator
 import android.widget.Toast
-//import android.view.animation.LinearInterpolator
 import org.bedu.clase1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -36,9 +33,19 @@ class MainActivity : AppCompatActivity() {
         binding.btnAlpha.setOnClickListener {
             blink()
         }
+
+        binding.btnTiny.setOnClickListener {
+            shrink()
+        }
+
+        binding.btnStart.setOnClickListener {
+            start()
+        }
+
+        binding.btnPivot.setOnClickListener {
+            pivot()
+        }
     }
-
-
 
     private fun barrelRoll() {
         val valueAnimator = ValueAnimator.ofFloat(0F,720F) //360 * 2
@@ -90,5 +97,26 @@ class MainActivity : AppCompatActivity() {
             })
             start()
         }
+    }
+
+    private fun shrink() {
+        AnimatorInflater.loadAnimator(this, R.animator.shrink).apply {
+            setTarget(binding.arwing)
+            start()
+        }
+    }
+
+    private fun start() {
+        binding.arwing.animate().apply {
+            translationX(0F)
+            translationY(0F)
+            duration = 1000
+            interpolator = AccelerateDecelerateInterpolator()
+            start()
+        }
+    }
+
+    private fun pivot() {
+        TODO("Not yet implemented")
     }
 }
