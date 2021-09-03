@@ -1,6 +1,8 @@
 package org.bedu.roomvehicles
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import androidx.fragment.app.Fragment
-
+import org.bedu.roomvehicles.room.Vehicle
+import org.bedu.roomvehicles.room.VehicleDB
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class AddEditFragment : Fragment() {
@@ -40,9 +45,27 @@ class AddEditFragment : Fragment() {
 
         addButton.setOnClickListener{
 
-
         }
 
         return view
     }
+
+    private fun addVehicle() {
+
+        val vehicle = Vehicle(brand = brandEdit.text.toString(),
+        platesNumber = platesEdit.text.toString(),
+        model = modelEdit.text.toString(),
+        isWorking = workingSwitch.isEnabled)
+        val executor: ExecutorService = Executors.newSingleThreadExecutor()
+
+        executor.execute(Runnable{
+            val vehicleArray = VehicleDB.getInstace(requireContext())?.vehicleDao()?.insertVehicle() as MutableList<Vehicle>
+
+            Handler(Looper.getMainLooper()).post(Runnable {
+
+            })
+
+
+    }
+
 }
