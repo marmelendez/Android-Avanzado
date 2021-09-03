@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.bedu.roomvehicles.room.Vehicle
+import org.bedu.roomvehicles.room.VehicleDB
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -54,6 +55,16 @@ class VehicleListFragment : Fragment(), ItemListener {
 
 
         val executor: ExecutorService = Executors.newSingleThreadExecutor()
+
+        executor.execute(Runnable{
+            val vehicleArray = VehicleDB.getInstace(requireContext())?.vehicleDao()?.getVehicles() as MutableList<Vehicle>
+
+            Handler(Looper.getMainLooper()).post(Runnable {
+                adapter = VehicleAdapter(vehicleArray, getListener())
+                recyclerVehicle.adapter = adapter
+            })
+
+        })
 
 
         return view
