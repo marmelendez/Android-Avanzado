@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import org.bedu.roomvehicles.room.Vehicle
 import org.bedu.roomvehicles.room.VehicleDB
 import java.util.concurrent.ExecutorService
@@ -44,7 +46,7 @@ class AddEditFragment : Fragment() {
         addButton = view.findViewById(R.id.button_add_car)
 
         addButton.setOnClickListener{
-
+            addVehicle()
         }
 
         return view
@@ -52,20 +54,26 @@ class AddEditFragment : Fragment() {
 
     private fun addVehicle() {
 
-        val vehicle = Vehicle(brand = brandEdit.text.toString(),
-        platesNumber = platesEdit.text.toString(),
-        model = modelEdit.text.toString(),
-        isWorking = workingSwitch.isEnabled)
+        val vehicle = Vehicle(
+            brand = brandEdit.text.toString(),
+            platesNumber = platesEdit.text.toString(),
+            model = modelEdit.text.toString(),
+            isWorking = workingSwitch.isEnabled
+        )
         val executor: ExecutorService = Executors.newSingleThreadExecutor()
 
-        executor.execute(Runnable{
-            val vehicleArray = VehicleDB.getInstace(requireContext())?.vehicleDao()?.insertVehicle() as MutableList<Vehicle>
+        executor.execute(Runnable {
+            VehicleDB.getInstace(
+                requireContext()
+            )
+                ?.vehicleDao()
+                ?.insertVehicle(vehicle)
 
             Handler(Looper.getMainLooper()).post(Runnable {
-
+                findNavController().navigate(
+                    R.id.action_addEditFragment_to_vehicleListFragment
+                )
             })
-
-
+        })
     }
-
 }
