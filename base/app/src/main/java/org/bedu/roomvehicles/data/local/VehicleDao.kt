@@ -1,5 +1,6 @@
 package org.bedu.roomvehicles.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -24,7 +25,7 @@ interface VehicleDao {
     suspend fun removeVehicles(vararg vehicles: Vehicle)
 
     @Query("SELECT * FROM Vehicle")
-    fun getVehicles(): List<Vehicle>
+    fun getVehicles(): LiveData<List<Vehicle>>
 
     @Query("SELECT * FROM Vehicle WHERE id = :id")
     suspend fun getVehicleById(id: Int): Vehicle
