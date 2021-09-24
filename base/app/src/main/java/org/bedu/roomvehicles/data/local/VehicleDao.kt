@@ -8,6 +8,9 @@ interface VehicleDao {
     @Insert
     suspend fun insertVehicle(vehicle: Vehicle)
 
+    @Insert
+    suspend fun insertAll(vehicles: List<Vehicle>)
+
     @Update
     suspend fun updateVehicle(vehicle: Vehicle)
 
