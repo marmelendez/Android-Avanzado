@@ -1,6 +1,6 @@
-package org.bedu.roomvehicles;
+package org.bedu.roomvehicles.vehiclelist;
 
-import org.bedu.roomvehicles.room.Vehicle
+import org.bedu.roomvehicles.data.local.Vehicle
 
 interface ItemListener {
     fun onEdit(vehicle: Vehicle)

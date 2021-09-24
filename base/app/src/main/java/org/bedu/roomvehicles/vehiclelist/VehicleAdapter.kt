@@ -1,4 +1,4 @@
-package org.bedu.roomvehicles
+package org.bedu.roomvehicles.vehiclelist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.bedu.roomvehicles.room.Vehicle
+import org.bedu.roomvehicles.R
+import org.bedu.roomvehicles.data.local.Vehicle
 
 class VehicleAdapter(
-    private val vehicleArray: MutableList<Vehicle>?,
-    val itemListener : ItemListener
+        private val vehicleArray: MutableList<Vehicle>?,
+        val itemListener : ItemListener
     ) :
     RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
 

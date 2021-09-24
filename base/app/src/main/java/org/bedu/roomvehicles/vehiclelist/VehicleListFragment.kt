@@ -1,19 +1,15 @@
-package org.bedu.roomvehicles
+package org.bedu.roomvehicles.vehiclelist
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.bedu.roomvehicles.room.Vehicle
+import org.bedu.roomvehicles.R
+import org.bedu.roomvehicles.data.local.Vehicle
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -33,7 +29,7 @@ class VehicleListFragment : Fragment(), ItemListener {
 
     }
 
-    fun getListener(): ItemListener{
+    fun getListener(): ItemListener {
         return this
     }
 
@@ -48,7 +44,7 @@ class VehicleListFragment : Fragment(), ItemListener {
 
         addButton.setOnClickListener {
             findNavController().navigate(
-                R.id.action_vehicleListFragment_to_addEditFragment
+                    R.id.action_vehicleListFragment_to_addEditFragment
             )
         }
 

@@ -1,4 +1,4 @@
-package org.bedu.roomvehicles
+package org.bedu.roomvehicles.addeditvehicle
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import androidx.fragment.app.Fragment
-
+import org.bedu.roomvehicles.R
 
 
 class AddEditFragment : Fragment() {
