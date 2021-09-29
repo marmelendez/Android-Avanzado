@@ -1,4 +1,4 @@
-package org.bedu.testing
+package org.bedu.roomvehicles
 
 import org.junit.Test
 
