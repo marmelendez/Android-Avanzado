@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import com.bedu.auth.R
 import com.bedu.auth.databinding.ActivityEmailBinding
@@ -15,10 +16,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class EmailActivity : Activity() {
 
     private lateinit var binding: ActivityEmailBinding
+
     private lateinit var auth: FirebaseAuth
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,11 +95,11 @@ class EmailActivity : Activity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "SIGN IN")
+                    Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user, null)
                 } else {
-                    Log.w(TAG, "SIGN IN: ERROR", task.exception)
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     task.exception?.let { updateUI(null, it) }
                 }
             }

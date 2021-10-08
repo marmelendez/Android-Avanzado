@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.bedu.auth.databinding.ActivityOptionsBinding
+import com.google.firebase.FirebaseApp
 
 class MainActivity : Activity() {
 
@@ -14,6 +15,9 @@ class MainActivity : Activity() {
         binding = ActivityOptionsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        // Inicializar Firebase
+        FirebaseApp.initializeApp(this)
 
         handleClick()
     }
